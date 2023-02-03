@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
-LNum =abs(number) % 10
-if  number < 0:
+LNum = abs(number) % 10
+if number < 0:
     LNum = -LNum
 print('Last digit', number, 'is', LNum, end=" ")
 if LNum > 5:
