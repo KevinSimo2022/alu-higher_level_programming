@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+
 def print_matrix_integer(matrix=[[]]):
     if matrix:
         for i in range(0, len(matrix)):
@@ -8,4 +10,4 @@ def print_matrix_integer(matrix=[[]]):
                 else:
                     print("{:d}".format(matrix[i][j]))
     else:
-        print() 
+        print()
