@@ -9,7 +9,7 @@ def roman_to_int(roman_string):
                     num = romans[j]
                     return num
                 if roman_string[i:i+1] is j:
-                    num += romans[j]
+                    num = romans[j]
                     break
         return num
     else:
