@@ -5,4 +5,4 @@ def uniq_add(my_list=[]):
     sum = 0
     for i in uniqueLi:
         sum += i
-    return sum
+    return 
