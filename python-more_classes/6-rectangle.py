@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    3-rectangle: class Rectangle
+    6-rectangle: class Rectangle
 """
 
 
@@ -11,6 +11,8 @@ class Rectangle:
             width (int): width of the rectangle
             height (int): height of the rectangle
     """
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """
             initialises the instances
@@ -31,6 +33,7 @@ class Rectangle:
             self.__height = height
         else:
             raise TypeError("height must be an integer")
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -103,3 +106,19 @@ class Rectangle:
         rectangle += "#" * self.__width
 
         return rectangle
+
+    def __repr__(self):
+        """
+            returns a string representation of the rectangle to be
+            able to recreate a new instance
+        """
+        rectangle = "Rectangle({}, {})".format(self.__width, self.__height)
+        return rectangle
+
+    def __del__(self):
+        """
+            properly deletes the instance of a class.
+        """
+        if Rectangle.number_of_instances > 0:
+            Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
