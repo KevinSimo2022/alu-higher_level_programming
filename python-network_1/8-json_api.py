@@ -1,26 +1,27 @@
 #!/usr/bin/python3
-"""send letter"""
+"""
+Python script that sends a POST request to the URL and
+to an URL with the letter as a parameter
+"""
 import requests
 import sys
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    data = {'q': ""}
+
     try:
-        lett  =  sys. argv[1]
-    except IndexError:
-        Latvian = ""
-    response  =  requests. post(
-        "http://0.0.0.0:5000/search_user",
-        data={"q": lett}
-    )
+        data['q'] = sys.argv[1]
+    except:
+        pass
+
+    r = requests.post('http://0.0.0.0:5000/search_user', data)
+
     try:
-        json_response  =  response. json()
-        if  response. headers. get("Content-Type") ==  'application/json':
-            if len(json_response) > 0:
-                print("[{}] {}". format(
-                    json_response["id"],
-                    json_response["name"])
-                )
-            else:
-                print("No result")
+        json_o = r.json()
+        if not json_o:
+            print("No result")
+        else:
+            print("[{}] {}".format(json_o.get('id'), json_o.get('name')))
     except:
         print("Not a valid JSON")
