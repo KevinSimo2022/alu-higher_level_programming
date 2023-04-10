@@ -373,13 +373,6 @@ class TestRectangleMethods(unittest.TestCase):
         load_file = Rectangle.load_from_file()
         self.assertEqual(load_file, [])
 
-if __name__ == '__main__':
-    unittest.main()
-    def test_load_from_file(self):
-        """ Test load JSON file """
-        load_file = Rectangle.load_from_file()
-        self.assertEqual(load_file, [])
-
     def test_load_from_file_2(self):
         """ Test load JSON file """
         r1 = Rectangle(5, 5)
@@ -389,5 +382,11 @@ if __name__ == '__main__':
         Rectangle.save_to_file(linput)
         loutput = Rectangle.load_from_file()
 
-        for i in range(len(linput)):
-            self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+        # Check if the loaded objects are equal to the original ones
+        self.assertEqual(len(loutput), len(linput))
+        for o1, o2 in zip(loutput, linput):
+            self.assertEqual(vars(o1), vars(o2))
+            for i in range(len(linput)):
+                self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+if __name__ == '__main__':
+    unittest.main()
