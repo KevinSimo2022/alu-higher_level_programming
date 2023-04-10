@@ -60,9 +60,10 @@ class Square(Rectangle):
                     setattr(self, key, value)
 
     def to_dictionary(self):
-        """ Returns a dictionary with attributes """
-        fmt = "{},{},{},{}"
-        return fmt.format(*(
-            self.id, self.size,
-            self.x, self.y
-        ))
+    """Converts self to a dictionary"""
+    return {
+        "id": self.id,
+        "size": self.size,
+        "x": self.x,
+        "y": self.y
+    }
