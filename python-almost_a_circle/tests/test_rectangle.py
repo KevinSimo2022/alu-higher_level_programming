@@ -133,7 +133,7 @@ class TestRectangle_width(unittest.TestCase):
             Rectangle({"a": 1, "b": 2}, 2)
 
     def test_bool_width(self):
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaisesRegex(TypeError, "width must be a positive integer"):
             Rectangle(True, 2)
 
     def test_list_width(self):
