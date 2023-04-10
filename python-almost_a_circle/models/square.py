@@ -61,13 +61,8 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """ Returns a dictionary with attributes """
-        list_atr = ['id', 'size', 'x', 'y']
-        dict_res = {}
-
-        for key in list_atr:
-            if key == 'size':
-                dict_res[key] = getattr(self, 'width')
-            else:
-                dict_res[key] = getattr(self, key)
-
-        return
+        fmt = "{},{},{},{}"
+        return fmt.format(*(
+            self.id, self.size,
+            self.x, self.y
+        ))
