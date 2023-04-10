@@ -68,12 +68,14 @@ class Base:
         """load from file"""
         filename = cls.__name__ + ".json"
         object_created = []
-        with open(filename, 'r') as f:
-            file_string = f.read().replace('\n', '')
-            data = cls.from_json_string(file_string)
-            for el in data:
-                object_created.append(cls.create(**el))
-
+        try:
+            with open(filename, 'r') as f:
+                file_string = f.read().replace('\n', '')
+                data = cls.from_json_string(file_string)
+                for el in data:
+                    object_created.append(cls.create(**el))
+        except FileNotFoundError:
+            pass
         return object_created
 
     @classmethod
