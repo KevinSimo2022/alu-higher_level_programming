@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"module for test Rectangle class """
+"""
+module for testing Rectangle class
+"""
 import unittest
 import json
 import os
@@ -39,13 +41,13 @@ class TestRectangleMethods(unittest.TestCase):
         """ Test new rectangles """
         new = Rectangle(1, 1)
         new2 = Rectangle(1, 1)
-        self.assertEqual(False, new is new2)
-        self.assertEqual(False, new.id == new2.id)
+        self.assertNotEqual(new, new2)
+        self.assertNotEqual(new.id, new2.id)
 
     def test_is_Base_instance(self):
         """ Test Rectangle is a Base instance """
         new = Rectangle(1, 1)
-        self.assertEqual(True, isinstance(new, Base))
+        self.assertIsInstance(new, Base)
 
     def test_incorrect_amount_attrs(self):
         """ Test error raise with 1 arg passed """
@@ -58,50 +60,50 @@ class TestRectangleMethods(unittest.TestCase):
             new = Rectangle()
 
     def test_access_private_attrs(self):
-        """ Trying to access to a private attribute """
+        """ Trying to access a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__width
 
     def test_access_private_attrs_2(self):
-        """ Trying to access to a private attribute """
+        """ Trying to access a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__height
 
     def test_access_private_attrs_3(self):
-        """ Trying to access to a private attribute """
+        """ Trying to access a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__x
 
     def test_access_private_attrs_4(self):
-        """ Trying to access to a private attribute """
+        """ Trying to access a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__y
 
-    def test_valide_attrs(self):
+    def test_valid_attrs(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle("2", 2, 2, 2, 2)
 
-    def test_valide_attrs_2(self):
+    def test_valid_attrs_2(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle(2, "2", 2, 2, 2)
 
-    def test_valide_attrs_3(self):
+    def test_valid_attrs_3(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle(2, 2, "2", 2, 2)
 
-    def test_valide_attrs_4(self):
+    def test_valid_attrs_4(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle(2, 2, 2, "2", 2)
 
-    def test_value_attrs(self):
+    def test_invalid_attrs(self):
         """ Trying to pass invalid values """
         with self.assertRaises(ValueError):
             new = Rectangle(0, 1)
@@ -384,9 +386,7 @@ class TestRectangleMethods(unittest.TestCase):
 
         # Check if the loaded objects are equal to the original ones
         self.assertEqual(len(loutput), len(linput))
-        for o1, o2 in zip(loutput, linput):
-            self.assertEqual(vars(o1), vars(o2))
-            for i in range(len(linput)):
-                self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+        for i, j in zip(linput, loutput):
+            self.assertEqual(str(i), str(j))
 if __name__ == '__main__':
     unittest.main()
